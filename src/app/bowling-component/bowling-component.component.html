@@ -1,0 +1,43 @@
+<div class="frame">
+  <h1 class="heading"> Ten Pin Bowling Game Example</h1>
+
+  <form class="bowling-form" (submit)="showScore()">
+      <table *ngIf="frameNumber < 11">
+          <tr>
+              <th>First Roll</th>
+              <th *ngIf="bowlingForm.first < 10 || frameNumber === 10">Second Roll</th>
+              <th
+                  *ngIf="frameNumber === 10 && (bowlingForm.first === 10 || (bowlingForm.first + (this.bowlingForm.second ? this.bowlingForm.second : 0) === 10))">
+                  Third Roll</th>
+          </tr>
+          <tr>
+              <td>
+                  <input type="number" name="first" maxlength="2" min="0" max="10" required
+                      [(ngModel)]="bowlingForm.first" />
+              </td>
+              <td *ngIf="bowlingForm.first < 10 || frameNumber === 10">
+                  <input type="number" name="second" maxlength="2" min="0"
+                      max="{{(frameNumber === 10 && bowlingForm.first === 10) ? 10 : 10-bowlingForm.first}}"
+                      [(ngModel)]="bowlingForm.second" />
+              </td>
+
+              <td
+                  *ngIf="frameNumber === 10 && (bowlingForm.first === 10 || (bowlingForm.first + (this.bowlingForm.second ? this.bowlingForm.second : 0) === 10))">
+                  <input type="number" name="third" maxlength="2" min="0" max="10" [(ngModel)]="bowlingForm.third" />
+              </td>
+          </tr>
+
+      </table>
+      <div>
+          <button class="btn btn-primary" type="submit" *ngIf="frameNumber < 11">
+              Show Score
+          </button>
+          <button type="reset" *ngIf="frameNumber === 11" onclick="location.reload();"> // reload the page
+              Reset Scores
+          </button>
+      </div>
+
+  </form>
+  <div class="final-score">Total Score: <b>{{score}}</b></div> // show score
+  <div class="frame-number">Frame Number: <b>{{frameNumber}}</b></div> // frame number
+</div>
