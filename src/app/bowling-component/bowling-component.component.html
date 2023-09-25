@@ -29,15 +29,15 @@
 
       </table>
       <div>
-          <button class="btn btn-primary" type="submit" *ngIf="frameNumber < 11">
+          <button class="btn btn-primary" type="button" type="submit" *ngIf="frameNumber < 11">
               Show Score
           </button>
-          <button type="reset" *ngIf="frameNumber === 11" onclick="location.reload();"> // reload the page
+          <button class="btn btn-primary" type="reset" *ngIf="frameNumber === 11" onclick="location.reload();"> <!-- reload the page-->
               Reset Scores
           </button>
       </div>
 
   </form>
-  <div class="final-score">Total Score: <b>{{score}}</b></div> // show score
-  <div class="frame-number">Frame Number: <b>{{frameNumber}}</b></div> // frame number
+  <div class="final-score">Total Score: <b>{{score}}</b></div>
+  <div class="frame-number">Frame Number: <b>{{frameNumber}}</b></div>
 </div>
